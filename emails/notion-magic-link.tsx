@@ -13,547 +13,536 @@ import * as React from 'react';
 
 interface MeisterEmailProps {
     loginCode: string,
-    logoImage: string,
-    logoBlackWhiteImage: string,
-    phoneIcon: string,
-    emailIcon: string,
-    topBg: string,
-    seyma: string,
-    manufactura: string,
-    crystal: string,
-    biskotti: string,
-    synergetic: string,
-    volgasnab: string,
-    quote: string,
-    telegram: string,
-    whatsapp: string,
 }
 
 const baseUrl = process.env.VERCEL_URL
-    ? `https://tk-meister.ru/`
-    : `https://tk-meister.ru/`;
+    ? `https://tk-meister.ru`
+    : `https://tk-meister.ru`;
 
 export const MeisterEmail = ({
             loginCode,
-            logoImage,
-            logoBlackWhiteImage,
-            phoneIcon,
-            emailIcon,
-            topBg,
-            seyma,
-            manufactura,
-            crystal,
-            biskotti,
-            synergetic,
-            volgasnab,
-            quote,
-            telegram,
-            whatsapp
      }: MeisterEmailProps) => (
     <Html>
         <Head>
             <title>Коммерческое предложение от логистической компании ООО "Мейстер"</title>
         </Head>
         <Preview>Мы ищем партнёров по всей России для взаимовыгодного сотрудничества без посредников</Preview>
-        <Body style={main}>
-            {/* Шапка*/}
-            <Container style={container}>
-                <Section style={{paddingTop: "10px"}}>
-                    <Row style={{textAlign: "right"}}>
-                        <Column>
-                            <Link style={{width: '16px', height: '16px'}} href="https://tk-meister.ru/">
-                                <Img
-                                    className="rounded-full"
-                                    src={logoImage}
-                                    width="160"
-                                    height="55"
-                                />
-                            </Link>
-                        </Column>
-                        <Column>
-                            <Link href="tel:+79991205982" style={link}>
-                                <Row>
-                                    <Column>
-                                        <Text style={{...intendClear, ...phoneStyle}}>+7 (999) 120 59 82</Text>
-                                    </Column>
-                                    <Column style={{textAlign: "right"}}>
-                                        <Img
-                                            className="rounded-full"
-                                            src={emailIcon}
-                                            width="16"
-                                            height="16"
-                                            style={{display: "inline"}}
-                                        />
-                                    </Column>
-                                </Row>
-                            </Link>
-                            <Link href="mailto:nickolasdzr@yandex.ru" style={link}>
-                                <Row>
-                                    <Column>
-                                        <Text style={intendClear}>nickolasdzr@yandex.ru</Text>
-                                    </Column>
-                                    <Column style={{textAlign: "right"}}>
-                                        <Img
-                                            className="rounded-full"
-                                            src={phoneIcon}
-                                            width="16"
-                                            height="16"
-                                            style={{display: "inline"}}
-                                        />
-                                    </Column>
-                                </Row>
-                            </Link>
-                        </Column>
-                    </Row>
-                </Section>
-            </Container>
-            {/* Бекграунд */}
-            <Container style={container}>
+        <Body style={{...main, minWidth: "430px"}}>
+            <Section style={{maxWidth: "600px", backgroundColor: colors.black}}>
+                {/* Шапка*/}
+                <Container style={{...container, backgroundColor: "#1A1A1A"}}>
+                    <Section style={{borderTop: `26px solid ${colors.black}`, borderBottom: `26px solid ${colors.black}`}}>
+                        <Row style={{textAlign: "right"}}>
+                            <Column>
+                                <Link style={{width: '16px', height: '16px'}} href="https://tk-meister.ru/">
+                                    <Img
+                                        className="rounded-full"
+                                        src={`${baseUrl}/email-assets/logo.jpg`}
+                                        width="160"
+                                        height="55"
+                                        alt="Логотип компании ООО 'Мейстер'"
+                                    />
+                                </Link>
+                            </Column>
+                            <Column>
+                                <Link href="tel:+79991205982" style={link}>
+                                    <Row>
+                                        <Column>
+                                            <Text style={{...intendClear, marginRight: "3px", marginBottom: "5px", color: "white !important", ...phoneStyle}}>+7 (999) 120 59 82</Text>
+                                        </Column>
+                                        <Column style={{textAlign: "right"}}>
+                                            <Img
+                                                className="rounded-full"
+                                                src={`${baseUrl}/email-assets/email-icon.jpg`}
+                                                width="16"
+                                                height="16"
+                                                style={{display: "inline"}}
+                                                alt="Иконка email"
+                                            />
+                                        </Column>
+                                    </Row>
+                                </Link>
+                                <Link href="mailto:nickolasdzr@yandex.ru" style={link}>
+                                    <Row>
+                                        <Column>
+                                            <Text style={{...intendClear, marginRight: "3px", color: "white !important"}}>nickolasdzr@yandex.ru</Text>
+                                        </Column>
+                                        <Column style={{textAlign: "right"}}>
+                                            <Img
+                                                className="rounded-full"
+                                                src={`${baseUrl}/email-assets/phone-icon.jpg`}
+                                                width="16"
+                                                height="16"
+                                                style={{display: "inline"}}
+                                                alt="Иконка телефона"
+                                            />
+                                        </Column>
+                                    </Row>
+                                </Link>
+                            </Column>
+                        </Row>
+                    </Section>
+                </Container>
+                {/* Бекграунд */}
                 <Section>
                     <Row>
                         <Column>
                             <Img
-                                src={topBg}
+                                src={`${baseUrl}/email-assets/top-background.jpg`}
                                 width="600px"
                                 height="366px"
-                                style={{marginTop: "28px"}}
+                                style={{width: "100%", height: "auto"}}
+                                alt="Наш слоган: Перевозки доступные всем!"
                             />
                         </Column>
                     </Row>
                 </Section>
-            </Container>
-            {/* Текст предложения */}
-            <Container style={{...container, backgroundColor: "#1A1A1A"}}>
-                <Section
-                    style={{
-                        paddingTop: "71px",
-                        paddingBottom: "67px",
-                    }}
-                >
-                    <Row>
-                        <Column>
-                            <Heading style={{...h1,
+                {/* Текст предложения */}
+                <Container style={{...container, backgroundColor: "#1A1A1A"}}>
+                    <Section
+                        style={{
+                            borderTop: "71px solid transparent",
+                            borderBottom: "67px solid transparent",
+                        }}
+                    >
+                        <Row>
+                            <Column>
+                                <Heading style={{...h1,
+                                    marginTop: 0,
+                                    marginBottom: "10px",
+                                }}>
+                                    Грузоперевозки без проблем по антикризисным расценкам
+                                </Heading>
+                                <Text style={{color: "white", fontSize: "16px", lineHeight: 1.6}}>
+                                    Вашему предприятию не нужно тратить время и силы на то,
+                                    чтобы организовать доставку груза в любую точку страны.
+                                    Обратитесь в нашу компанию и доверьте свою заботу профессионалам.
+                                </Text>
+                                <Text style={{color: "white", fontSize: "16px", lineHeight: 1.6}}>
+                                    Компания «Мейстер» функционирует на отечественном рынке с 2016 года.
+                                    Мы успешно доставили более 150 млн. тонн различных грузов во все города нашей страны.
+                                    МЫ полностью обеспечим сохранность вашего груза и его своевременную доставку.
+                                </Text>
+                            </Column>
+                        </Row>
+                    </Section>
+                </Container>
+                {/* С нами сотрудничают*/}
+                <Container style={{...container, backgroundColor: colors.lightestGray, borderColor: colors.lightestGray}}>
+                    <Section style={{
+                        borderTop: "solid transparent",
+                        borderBottom: "solid transparent",
+                        borderTopWidth: "65px",
+                        borderBottomWidth: "65px",
+                    }}>
+                        <Row style={{marginBottom: "40px"}}>
+                            <Heading as="h2" style={{...h1,
+                                color: "black",
                                 marginTop: 0,
-                                marginBottom: "10px",
+                                marginBottom: "19px",
                             }}>
-                                Грузоперевозки без проблем по антикризисным расценкам
+                                С нами сотрудничают
                             </Heading>
-                            <Text style={{color: "white", fontSize: "16px", lineHeight: 1.6}}>
-                                Вашему предприятию не нужно тратить время и силы на то,
-                                чтобы организовать доставку груза в любую точку страны.
-                                Обратитесь в нашу компанию и доверьте свою заботу профессионалам.
-                            </Text>
-                            <Text style={{color: "white", fontSize: "16px", lineHeight: 1.6}}>
-                                Компания «Мейстер» функционирует на отечественном рынке с 2016 года.
-                                Мы успешно доставили более 150 млн. тонн различных грузов во все города нашей страны.
-                                МЫ полностью обеспечим сохранность вашего груза и его своевременную доставку.
-                            </Text>
-                        </Column>
-                    </Row>
-                </Section>
-            </Container>
-            {/* С нами сотрудничают*/}
-            <Container style={{...container, backgroundColor: "#E5E5E5"}}>
-                <Section style={{
-                    paddingTop: "67px",
-                    paddingBottom: "67px",
-
-                }}>
-                    <Row style={{marginBottom: "40px"}}>
-                        <Heading style={{...h1,
-                            color: "black",
-                            marginTop: 0,
-                            marginBottom: "10px",
-                        }}>
-                            С нами сотрудничают
-                        </Heading>
-                    </Row>
-                    <Row style={{marginBottom: "40px"}}>
-                        <Column style={{
-                            width: "50%",
-                        }}>
-                            <Link
-                                href="https://seyma.ru/"
-                                target="_blank"
-                                style={{
-                                    textAlign: "center",
-                                    display: "inline-block",
-                                    width: "100%",
-                                }}
-                            >
-                                <Img
-                                    src={seyma}
-                                    style={{
-                                        width: "123px",
-                                        height: "98px",
-                                        display: "inline",
-                                    }}
-                                />
-                            </Link>
-                        </Column>
-                        <Column style={{
-                            textAlign: "center",
-                            width: "50%",
-                        }}>
-                            <Link
-                                href="https://gormanu.ru/"
-                                target="_blank"
-                                style={{
-                                    textAlign: "center",
-                                    display: "inline-block",
-                                    width: "100%",
-                                }}
-                            >
-                                <Img
-                                    src={manufactura}
-                                    style={{
-                                        width: "142px",
-                                        height: "97px",
-                                        display: "inline",
-                                    }}
-                                />
-                            </Link>
-                        </Column>
-                    </Row>
-                    <Row style={{marginBottom: "40px"}}>
-                        <Column style={{
-                            textAlign: "center",
-                            width: "50%",
-                        }}>
-                            <Link
-                                href="http://www.krst-nn.ru/"
-                                target="_blank"
-                                style={{
-                                    textAlign: "center",
-                                    display: "inline-block",
-                                    width: "100%",
-                                }}
-                            >
-                                <Img
-                                    src={crystal}
-                                    style={{
-                                        width: "170px",
-                                        height: "64px",
-                                        display: "inline",
-                                    }}
-                                />
-                            </Link>
-                        </Column>
-                        <Column style={{
-                            textAlign: "center",
-                            width: "50%",
-                        }}>
-                            <Link
-                                href="http://www.biskotti.ru/products"
-                                target="_blank"
-                                style={{
-                                    textAlign: "center",
-                                    display: "inline-block",
-                                    width: "100%",
-                                }}
-                            >
-                                <Img
-                                    src={biskotti}
-                                    style={{
-                                        width: "151px",
-                                        height: "114px",
-                                        display: "inline",
-                                    }}
-                                />
-                            </Link>
-                        </Column>
-                    </Row>
-                    <Row>
-                        <Column style={{
-                            textAlign: "center",
-                            width: "50%",
-                        }}>
-
-
-                            <Link
-                                href="https://synergetic.ru/"
-                                target="_blank"
-                                style={{
-                                    textAlign: "center",
-                                    display: "inline-block",
-                                    width: "100%",
-                                }}
-                            >
-                                <Img
-                                    src={synergetic}
-                                    style={{
-                                        width: "210px",
-                                        height: "70px",
-                                        display: "inline",
-                                    }}
-                                />
-                            </Link>
-                        </Column>
-                        <Column style={{
-                            textAlign: "center",
-                            width: "50%",
-                        }}>
-                            <Img
-                                src={volgasnab}
-                                style={{
-                                    width: "148px",
-                                    height: "65px",
-                                    display: "inline",
-                                }}
-                            />
-                        </Column>
-                    </Row>
-                </Section>
-            </Container>
-            {/* Отзывы */}
-            <Container style={{
-                ...container,
-                backgroundColor: "#1A1A1A"
-            }}>
-                <Section
-                    style={{
-                        paddingTop: "67px",
-                        paddingBottom: "67px",
-                    }}>
-                    <Row>
-                        <Column>
-                            <Heading style={{...h1,
-                                color: "white",
-                                marginTop: 0,
-                                marginBottom: "32px",
+                        </Row>
+                        <Row style={{marginBottom: "40px"}}>
+                            <Column style={{
+                                width: "50%",
                             }}>
-                                Более 300 РЕАЛЬНЫХ отзывов!
-                            </Heading>
-                        </Column>
-                    </Row>
-                    <Row style={{
-                        backgroundColor: "#4B4B4B",
-                        borderRadius: "15px",
-                        padding: "25px",
-                        marginBottom: "20px"
-                    }}>
-                        <Column style={{
-                            verticalAlign: "baseline"
-                        }}>
-                            <Img src={quote}
-                                 width="20px"
-                                 height="15px"
-                                 style={{marginRight: "25px"}}
-                            />
-                        </Column>
-                        <Column>
-                            <Text style={{display: 'inline', color: colors.gray, fontSize: "16px"}}>
-                                Отличный перевозчик, профессионал своего дела.
-                                БЫСТРЫЙ, четкий контроль погрузочно-разгрузочных работ.
-                                Информативность и добросовестность.
-                                Успеха вам и процветания! Рекомендую!
-                            </Text>
-                        </Column>
-                    </Row>
-                    <Row style={{
-                        backgroundColor: "#4B4B4B",
-                        borderRadius: "15px",
-                        padding: "25px",
-                        marginBottom: "20px"
-                    }}>
-                        <Column style={{
-                            verticalAlign: "baseline"
-                        }}>
-                            <Img src={quote}
-                                 width="20px"
-                                 height="15px"
-                                 style={{marginRight: "25px"}}
-                            />
-                        </Column>
-                        <Column>
-                            <Text style={{display: 'inline', color: colors.gray, fontSize: "16px"}}>
-                                Замечательный, ответственный перевозчик! Оперативность,
-                                качество, приятное общение, порядочность — всё это вызывает уважение!
-                                Спасибо за профессиональный подход к делу. Желаем процветания и успехов!
-                            </Text>
-                        </Column>
-                    </Row>
-                    <Row style={{
-                        backgroundColor: "#4B4B4B",
-                        borderRadius: "15px",
-                        padding: "25px",
-                        marginBottom: "70px",
-                    }}>
-                        <Column style={{
-                            verticalAlign: "baseline"
-                        }}>
-                            <Img src={quote}
-                                 width="20px"
-                                 height="15px"
-                                 style={{marginRight: "25px"}}
-                            />
-                        </Column>
-                        <Column>
-                            <Text style={{display: 'inline', color: colors.gray, fontSize: "16px"}}>
-                                Замечательный, ответственный перевозчик!.
-                                Оперативность, качество, приятное общение, порядочность — всё это вызывает уважение!
-                                Спасибо за профессиональный подход к делу.
-                                Желаем процветания и успехов!
-                            </Text>
-                        </Column>
-                    </Row>
-                    <Row>
-                        <Column style={{textAlign: "center"}}>
-                            <Button style={{
-                                backgroundColor: "#3B97A2",
-                                borderRadius: "5px",
-                                color: "white",
-                                paddingTop: "20px",
-                                paddingRight: "108px",
-                                paddingBottom: "19px",
-                                paddingLeft: "108px",
-                                cursor: "pointer"
-                            }}>
-                                Перейти на сайт
-                            </Button>
-                        </Column>
-                    </Row>
-                </Section>
-            </Container>
-            {/* Футер */}
-            <Container style={{
-                ...container,
-                backgroundColor: "#494949",
-                paddingTop: "50px",
-                paddingBottom: "70px",
-            }}>
-                <Section>
-                    <Row style={{marginBottom: "15px"}}>
-                        <Column style={{textAlign: "center"}}>
-                            <Link href={baseUrl}>
-                                <Img
-                                    src={logoBlackWhiteImage}
+                                <Link
+                                    href="https://seyma.ru/"
+                                    target="_blank"
                                     style={{
-                                        width: "120px",
-                                        height: "29px",
-                                        display: "inline",
+                                        textAlign: "center",
+                                        display: "inline-block",
+                                        width: "100%",
                                     }}
-
-                                />
-                            </Link>
-                        </Column>
-                    </Row>
-                    <Row style={{marginBottom: "30px"}}>
-                        <Column style={{textAlign: "center"}}>
-                            <Text style={{
-                                color: colors.gray,
-                                fontSize: "16px",
-                                margin: "0"
-                            }}>
-                                Благодарим за проявленное внимание
-                            </Text>
-                            <Text style={{
-                                color: colors.gray,
-                                fontSize: "16px",
-                                margin: "0"
-                            }}>
-                                и надеемся на плодотворное сотрудничество!
-                            </Text>
-                            <Text style={{
-                                color: colors.gray,
-                                fontSize: "16px",
-                                margin: "0"
-                            }}>
-                                С уважением, команда ООО «Мейстер»
-                            </Text>
-                        </Column>
-                    </Row>
-                    <Row>
-                        <Column style={{width: "100%", textAlign: "center"}}>
-                            <Link href="tel:+79991205982" style={{
-                                fontWeight: "700",
-                                lineHeight: "2",
+                                >
+                                    <Img
+                                        src={`${baseUrl}/email-assets/partners/seyma.jpg`}
+                                        style={{
+                                            width: "123px",
+                                            height: "98px",
+                                            display: "inline",
+                                        }}
+                                        alt="Логотип: Агрофирма Птицефабрика Сеймовская"
+                                    />
+                                </Link>
+                            </Column>
+                            <Column style={{
                                 textAlign: "center",
-                                textDecoration: "none",
-                                fontSize: "16px",
-                                color: colors.gray
+                                width: "50%",
                             }}>
-                                +7 (999) 120 59 82
-                            </Link>
-                        </Column>
-                    </Row>
-                    <Row>
-                        <Column style={{width: "100%", textAlign: "center"}}>
-                            <Link
-                                href="mailto:nickolasdzr@yandex.ru"
-                                style={{textDecoration: "none", fontSize: "16px", color: colors.gray, lineHeight: "1.2",}}
-                            >nickolasdzr@yandex.ru</Link>
-                        </Column>
-                    </Row>
-                    <Row style={{marginBottom: "22px"}}>
-                        <Column style={{width: "100%", textAlign: "center"}}>
-                            <Link href="https://tk-meister.ru/" style={{fontSize: "16px", color: "#3B97A2", lineHeight: "2",}}>https://tk-meister.ru/</Link>
-                        </Column>
-                    </Row>
-                    <Row>
-                        <Column style={{textAlign: "right", paddingRight: "15px"}}>
-                            <Link href="https://t.me/nickolas69">
+
+
+                                <Link
+                                    href="https://synergetic.ru/"
+                                    target="_blank"
+                                    style={{
+                                        textAlign: "center",
+                                        display: "inline-block",
+                                        width: "100%",
+                                    }}
+                                >
+                                    <Img
+                                        src={`${baseUrl}/email-assets/partners/synergetic.jpg`}
+                                        style={{
+                                            width: "210px",
+                                            height: "70px",
+                                            display: "inline",
+                                        }}
+                                        alt="ООО 'Синергетик'"
+                                    />
+                                </Link>
+                            </Column>
+                        </Row>
+                        <Row style={{marginBottom: "40px"}}>
+                            <Column style={{
+                                textAlign: "center",
+                                width: "50%",
+                            }}>
+                                <Link
+                                    href="http://www.krst-nn.ru/"
+                                    target="_blank"
+                                    style={{
+                                        textAlign: "center",
+                                        display: "inline-block",
+                                        width: "100%",
+                                    }}
+                                >
+                                    <Img
+                                        src={`${baseUrl}/email-assets/partners/crystal.jpg`}
+                                        style={{
+                                            width: "170px",
+                                            height: "64px",
+                                            display: "inline",
+                                        }}
+                                        alt="Торговый дом Кристалл"
+                                    />
+                                </Link>
+                            </Column>
+                            <Column style={{
+                                textAlign: "center",
+                                width: "50%",
+                            }}>
+                                <Link
+                                    href="http://www.biskotti.ru/products"
+                                    target="_blank"
+                                    style={{
+                                        textAlign: "center",
+                                        display: "inline-block",
+                                        width: "100%",
+                                    }}
+                                >
+                                    <Img
+                                        src={`${baseUrl}/email-assets/partners/biskotti.jpg`}
+                                        style={{
+                                            width: "151px",
+                                            height: "114px",
+                                            display: "inline",
+                                        }}
+                                        alt="ООО 'БИСКОТТИ ПЛЮС'"
+                                    />
+                                </Link>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column style={{
+                                textAlign: "center",
+                                width: "50%",
+                            }}>
+                                <Link
+                                    href="https://gormanu.ru/"
+                                    target="_blank"
+                                    style={{
+                                        textAlign: "center",
+                                        display: "inline-block",
+                                        width: "100%",
+                                    }}
+                                >
+                                    <Img
+                                        src={`${baseUrl}/email-assets/partners/manufactura.jpg`}
+                                        style={{
+                                            width: "142px",
+                                            height: "97px",
+                                            display: "inline",
+                                        }}
+                                        alt="Логотип: Гороховецкая мануфактура"
+                                    />
+                                </Link>
+                            </Column>
+                            <Column style={{
+                                textAlign: "center",
+                                width: "50%",
+                            }}>
                                 <Img
-                                    src={telegram}
-                                    width="25"
-                                    height="25"
-                                    style={{display: "inline"}}
+                                    src={`${baseUrl}/email-assets/partners/volgasnab.jpg`}
+                                    style={{
+                                        width: "148px",
+                                        height: "65px",
+                                        display: "inline",
+                                    }}
+                                    alt="Торговый дом Волгаснаб"
                                 />
-                            </Link>
-                        </Column>
-                        <Column style={{textAlign: "left", paddingLeft: "15px"}}>
-                            <Link href="https://wa.me/+79991205982">
-                                <Img
-                                    src={whatsapp}
-                                    width="25"
-                                    height="25"
-                                    style={{display: "inline"}}
+                            </Column>
+                        </Row>
+                    </Section>
+                </Container>
+                {/* Отзывы */}
+                <Container style={{
+                    ...container,
+                    backgroundColor: "#1A1A1A"
+                }}>
+                    <Section
+                        style={{
+                            marginTop: "67px",
+                            marginBottom: "67px",
+
+                        }}>
+                        <Row>
+                            <Column>
+                                <Heading as="h2" style={{...h1,
+                                    color: "white",
+                                    marginTop: 0,
+                                    marginBottom: "32px",
+                                }}>
+                                    Более 300 РЕАЛЬНЫХ отзывов!
+                                </Heading>
+                            </Column>
+                        </Row>
+                        <Row style={{
+                            backgroundColor: "#4B4B4B",
+                            borderRadius: "15px",
+                            border: "25px solid transparent",
+                            marginBottom: "20px"
+                        }}>
+                            <Column style={{
+                                verticalAlign: "baseline"
+                            }}>
+                                <Img src={`${baseUrl}/email-assets/quote.jpg`}
+                                     width="20px"
+                                     height="15px"
+                                     style={{marginRight: "25px"}}
+                                     alt="Картинка кавычек для обозначения цитаты"
                                 />
-                            </Link>
-                        </Column>
-                    </Row>
-                </Section>
-            </Container>
+                            </Column>
+                            <Column>
+                                <Text style={{display: 'inline', color: colors.lightGray, fontSize: "16px"}}>
+                                    Отличный перевозчик, профессионал своего дела.
+                                    БЫСТРЫЙ, четкий контроль погрузочно-разгрузочных работ.
+                                    Информативность и добросовестность.
+                                    Успеха вам и процветания! Рекомендую!
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row style={{
+                            backgroundColor: "#4B4B4B",
+                            borderRadius: "15px",
+                            border: "25px solid transparent",
+                            marginBottom: "20px"
+                        }}>
+                            <Column style={{
+                                verticalAlign: "baseline"
+                            }}>
+                                <Img src={`${baseUrl}/email-assets/quote.jpg`}
+                                     width="20px"
+                                     height="15px"
+                                     style={{marginRight: "25px"}}
+                                     alt='Картинка кавычек для обозначения цитаты'
+                                />
+                            </Column>
+                            <Column>
+                                <Text style={{display: 'inline', color: colors.lightGray, fontSize: "16px"}}>
+                                    Замечательный, ответственный перевозчик! Оперативность,
+                                    качество, приятное общение, порядочность — всё это вызывает уважение!
+                                    Спасибо за профессиональный подход к делу. Желаем процветания и успехов!
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row style={{
+                            backgroundColor: "#4B4B4B",
+                            borderRadius: "15px",
+                            border: "25px solid transparent",
+                            marginBottom: "70px",
+                        }}>
+                            <Column style={{
+                                verticalAlign: "baseline"
+                            }}>
+                                <Img src={`${baseUrl}/email-assets/quote.jpg`}
+                                     width="20px"
+                                     height="15px"
+                                     style={{marginRight: "25px"}}
+                                     alt='Картинка кавычек для обозначения цитаты'
+                                />
+                            </Column>
+                            <Column>
+                                <Text style={{display: 'inline', color: colors.lightGray, fontSize: "16px"}}>
+                                    Замечательный, ответственный перевозчик!.
+                                    Оперативность, качество, приятное общение, порядочность — всё это вызывает уважение!
+                                    Спасибо за профессиональный подход к делу.
+                                    Желаем процветания и успехов!
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column style={{textAlign: "center"}}>
+                                <Link href="https://tk-meister.ru/"
+                                    style={{
+                                        backgroundColor: colors.blue,
+                                        borderRadius: "5px",
+                                        color: "white",
+                                        width: "330px",
+                                        paddingTop: "20px",
+                                        paddingBottom: "19px",
+                                        maxWidth: "100%",
+                                        borderColor: colors.blue,
+                                        borderStyle: "solid",
+                                        cursor: "pointer",
+                                        display: "inline-block",
+                                    }}
+                                        target="_blank"
+                                >
+                                    Перейти на сайт
+                                </Link>
+                            </Column>
+                        </Row>
+                    </Section>
+                </Container>
+                {/* Футер */}
+                <Container style={{
+                    ...container,
+                    backgroundColor: colors.gray,
+                    borderStyle: "solid",
+                    borderColor: "transparent",
+                    paddingTop: "50px",
+                    paddingBottom: "70px",
+                }}>
+                    <Section>
+                        <Row style={{marginBottom: "15px"}}>
+                            <Column style={{textAlign: "center"}}>
+                                <Link href={baseUrl}>
+                                    <Img
+                                        src={`${baseUrl}/email-assets/logo-black-white.jpg`}
+                                        style={{
+                                            width: "120px",
+                                            height: "29px",
+                                            display: "inline",
+                                        }}
+                                        alt="Черно-белый логотип компании ООО 'Мейстер'"
+                                    />
+                                </Link>
+                            </Column>
+                        </Row>
+                        <Row style={{marginBottom: "30px"}}>
+                            <Column style={{textAlign: "center"}}>
+                                <Text style={{
+                                    color: colors.lightGray,
+                                    fontSize: "16px",
+                                    margin: "0"
+                                }}>
+                                    Благодарим за проявленное внимание
+                                </Text>
+                                <Text style={{
+                                    color: colors.lightGray,
+                                    fontSize: "16px",
+                                    margin: "0"
+                                }}>
+                                    и надеемся на плодотворное сотрудничество!
+                                </Text>
+                                <Text style={{
+                                    color: colors.lightGray,
+                                    fontSize: "16px",
+                                    margin: "0"
+                                }}>
+                                    С уважением, команда ООО «Мейстер»
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column style={{width: "100%", textAlign: "center"}}>
+                                <Link href="tel:+79991205982" style={{
+                                    fontWeight: "700",
+                                    lineHeight: "2",
+                                    textAlign: "center",
+                                    textDecoration: "none",
+                                    fontSize: "16px",
+                                    color: colors.lightGray
+                                }}>
+                                    +7 (999) 120 59 82
+                                </Link>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column style={{width: "100%", textAlign: "center"}}>
+                                <Link
+                                    href="mailto:nickolasdzr@yandex.ru"
+                                    style={{textDecoration: "none", fontSize: "16px", color: colors.lightGray, lineHeight: "1.2",}}
+                                >nickolasdzr@yandex.ru</Link>
+                            </Column>
+                        </Row>
+                        <Row style={{marginBottom: "22px"}}>
+                            <Column style={{width: "100%", textAlign: "center"}}>
+                                <Link href="https://tk-meister.ru/" style={{fontSize: "16px", color: colors.blue, lineHeight: "2",}}>https://tk-meister.ru/</Link>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column style={{textAlign: "right", borderRight: "15px solid transparent"}}>
+                                <Link href="https://t.me/nickolas69">
+                                    <Img
+                                        src={`${baseUrl}/email-assets/soc/telegram.jpg`}
+                                        width="25"
+                                        height="25"
+                                        style={{display: "inline"}}
+                                        alt="Логотип телеграма"
+                                    />
+                                </Link>
+                            </Column>
+                            <Column style={{textAlign: "left", borderLeft: "15px solid transparent"}}>
+                                <Link href="https://wa.me/+79991205982">
+                                    <Img
+                                        src={`${baseUrl}/email-assets/soc/whatsapp.jpg`}
+                                        width="25"
+                                        height="25"
+                                        style={{display: "inline"}}
+                                        alt="Логотип whatsapp"
+                                    />
+                                </Link>
+                            </Column>
+                        </Row>
+                    </Section>
+                </Container>
+            </Section>
         </Body>
     </Html>
 );
 
 MeisterEmail.PreviewProps = {
     loginCode: 'Meister',
-    logoImage: `${baseUrl}/email-assets/logo.jpg`,
-    logoBlackWhiteImage: `${baseUrl}/email-assets/logo-black-white.jpg`,
-    phoneIcon: `${baseUrl}/email-assets/phone-icon.jpg`,
-    emailIcon: `${baseUrl}/email-assets/email-icon.jpg`,
-    topBg: `${baseUrl}/email-assets/top-background.jpg`,
-    seyma: `${baseUrl}/email-assets/partners/seyma.jpg`,
-    manufactura: `${baseUrl}/email-assets/partners/manufactura.jpg`,
-    crystal: `${baseUrl}/email-assets/partners/crystal.jpg`,
-    biskotti: `${baseUrl}/email-assets/partners/biskotti.jpg`,
-    synergetic: `${baseUrl}/email-assets/partners/synergetic.jpg`,
-    volgasnab: `${baseUrl}/email-assets/partners/volgasnab.jpg`,
-    quote: `${baseUrl}/email-assets/quote.jpg`,
-    telegram: `${baseUrl}/email-assets/soc/telegram.jpg`,
-    whatsapp: `${baseUrl}/email-assets/soc/whatsapp.jpg`,
 } as MeisterEmailProps;
 
 export default MeisterEmail;
 
 const colors = {
-    gray: "#DEDEDE",
+    lightGray: "#DEDEDE",
+    lightestGray: "#E5E5E5",
+    gray: "#494949",
+    black: "#1a1a1a",
+    blue: "#3B97A2",
 }
 
 const main = {
-    backgroundColor: '#1A1A1A',
+    backgroundColor: colors.gray,
     fontSize: '16px',
-    color: "DEDEDE",
+    color: "#DEDEDE",
     fontFamily:
         "-apple-system, BlinkMacSystemFont, 'Verdana', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
 };
 
 const container = {
-    paddingLeft: '34px',
-    paddingRight: '34px',
-    margin: '0 auto',
+    borderLeft: `20px solid ${colors.black}`,
+    borderRight: `20px solid ${colors.black}`,
+    marginInlineStart: 'inherit',
+    marginInlineEnd: 'inherit',
+    maxWidth: "inherit",
 };
 
 const intendClear = {
