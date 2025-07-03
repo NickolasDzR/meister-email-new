@@ -10,17 +10,18 @@ import {
     Text,
 } from '@react-email/components';
 import * as React from 'react';
-
-interface MeisterEmailProps {
-    loginCode: string,
-}
+import {HeadContactsType, MeisterEmailProps, OffersType} from "../helpers/types";
+import {headContacts, offers} from "../helpers/data";
+import {colors, container, h1, intendClear, link, main, phoneStyle} from "../helpers/styles";
 
 const baseUrl = process.env.VERCEL_URL
     ? `https://tk-meister.ru`
     : `https://tk-meister.ru`;
 
 export const MeisterEmail = ({
-            loginCode,
+            loginCode: string,
+            offers: OffersType,
+            headContacts: [HeadContactsType],
      }: MeisterEmailProps) => (
     <Html>
         <Head>
@@ -45,40 +46,29 @@ export const MeisterEmail = ({
                                 </Link>
                             </Column>
                             <Column>
-                                <Link href="tel:+79991205982" style={link}>
-                                    <Row>
-                                        <Column>
-                                            <Text style={{...intendClear, marginRight: "3px", marginBottom: "5px", color: "white !important", ...phoneStyle}}>+7 (999) 120 59 82</Text>
-                                        </Column>
-                                        <Column style={{textAlign: "right"}}>
-                                            <Img
-                                                className="rounded-full"
-                                                src={`${baseUrl}/email-assets/email-icon.jpg`}
-                                                width="16"
-                                                height="16"
-                                                style={{display: "inline"}}
-                                                alt="Иконка email"
-                                            />
-                                        </Column>
-                                    </Row>
-                                </Link>
-                                <Link href="mailto:nickolasdzr@yandex.ru" style={link}>
-                                    <Row>
-                                        <Column>
-                                            <Text style={{...intendClear, marginRight: "3px", color: "white !important"}}>nickolasdzr@yandex.ru</Text>
-                                        </Column>
-                                        <Column style={{textAlign: "right"}}>
-                                            <Img
-                                                className="rounded-full"
-                                                src={`${baseUrl}/email-assets/phone-icon.jpg`}
-                                                width="16"
-                                                height="16"
-                                                style={{display: "inline"}}
-                                                alt="Иконка телефона"
-                                            />
-                                        </Column>
-                                    </Row>
-                                </Link>
+                                {
+                                    headContacts.map((headContact: HeadContactsType, index: number) => {
+                                        return <Link key={index} href={headContact["href"]}>
+                                            <Row>
+                                                <Column>
+                                                    <Text style={headContact["textStyle"]}>
+                                                        {headContact["text"]}
+                                                    </Text>
+                                                </Column>
+                                                <Column>
+                                                    <Img
+                                                        className={headContact["img"]["className"]}
+                                                        width={headContact["img"]["width"]}
+                                                        height={headContact["img"]["height"]}
+                                                        alt={headContact["img"]["alt"]}
+                                                        style={headContact["img"]["style"]}
+                                                        src={headContact["img"]["src"]}
+                                                    />
+                                                </Column>
+                                            </Row>
+                                        </Link>
+                                    })
+                                }
                             </Column>
                         </Row>
                     </Section>
@@ -111,18 +101,15 @@ export const MeisterEmail = ({
                                     marginTop: 0,
                                     marginBottom: "10px",
                                 }}>
-                                    Грузоперевозки без проблем по антикризисным расценкам
+                                    {offers["h1"]}
                                 </Heading>
-                                <Text style={{color: "white", fontSize: "16px", lineHeight: 1.6}}>
-                                    Вашему предприятию не нужно тратить время и силы на то,
-                                    чтобы организовать доставку груза в любую точку страны.
-                                    Обратитесь в нашу компанию и доверьте свою заботу профессионалам.
-                                </Text>
-                                <Text style={{color: "white", fontSize: "16px", lineHeight: 1.6}}>
-                                    Компания «Мейстер» функционирует на отечественном рынке с 2016 года.
-                                    Мы успешно доставили более 150 млн. тонн различных грузов во все города нашей страны.
-                                    МЫ полностью обеспечим сохранность вашего груза и его своевременную доставку.
-                                </Text>
+                                {
+                                    offers["text"].map((offerText: string, index: number) => {
+                                        return <Text key={index} style={{color: "white", fontSize: "16px", lineHeight: 1.6}}>
+                                            {offerText}
+                                        </Text>
+                                    })
+                                }
                             </Column>
                         </Row>
                     </Section>
@@ -517,56 +504,8 @@ export const MeisterEmail = ({
 
 MeisterEmail.PreviewProps = {
     loginCode: 'Meister',
+    offers: offers,
+    headContacts: headContacts
 } as MeisterEmailProps;
 
 export default MeisterEmail;
-
-const colors = {
-    lightGray: "#DEDEDE",
-    lightestGray: "#E5E5E5",
-    gray: "#494949",
-    black: "#1a1a1a",
-    blue: "#3B97A2",
-}
-
-const main = {
-    backgroundColor: colors.gray,
-    fontSize: '16px',
-    color: "#DEDEDE",
-    fontFamily:
-        "-apple-system, BlinkMacSystemFont, 'Verdana', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-};
-
-const container = {
-    borderLeft: `20px solid ${colors.black}`,
-    borderRight: `20px solid ${colors.black}`,
-    marginInlineStart: 'inherit',
-    marginInlineEnd: 'inherit',
-    maxWidth: "inherit",
-};
-
-const intendClear = {
-    marginTop: '0px',
-    marginBottom: '0px'
-}
-
-const phoneStyle = {
-    fontSize: '16px',
-}
-
-const h1 = {
-    color: "white",
-    fontFamily:
-        "-apple-system, BlinkMacSystemFont, 'Verdana', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-    fontSize: '22px',
-    fontWeight: 'bold',
-    padding: '0',
-};
-
-const link = {
-    color: '#ffffff',
-    textDecoration: 'none',
-    fontFamily:
-        "-apple-system, BlinkMacSystemFont, 'Verdana', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-    fontSize: '16px !important',
-};
