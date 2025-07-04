@@ -1,10 +1,4 @@
-export const colors = {
-    lightGray: "#DEDEDE",
-    lightestGray: "#E5E5E5",
-    gray: "#494949",
-    black: "#1a1a1a",
-    blue: "#3B97A2",
-}
+import {colors} from "./variables";
 
 export const main = {
     backgroundColor: colors.gray,

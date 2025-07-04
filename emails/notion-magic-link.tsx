@@ -12,34 +12,30 @@ import {
 import * as React from 'react';
 import {HeadContactsType, MeisterEmailProps, OffersType, PartnersDataType, PartnersType} from "../helpers/types";
 import {headContacts, offers, partners, reviews} from "../helpers/data";
-import {colors, container, h1, intendClear, link, main, phoneStyle} from "../helpers/styles";
+import {container, h1, intendClear, link, main, phoneStyle} from "../helpers/styles";
+import {colors} from "../helpers/variables";
 
 const baseUrl = process.env.VERCEL_URL
     ? `https://tk-meister.ru`
     : `https://tk-meister.ru`;
 
-export const MeisterEmail = ({
-            loginCode,
-            offers,
-            headContacts,
-            partners,
-            reviews
-     }: MeisterEmailProps) => (
+export const MeisterEmail = () => (
     <Html>
         <Head>
             <title>Коммерческое предложение от логистической компании ООО "Мейстер"</title>
         </Head>
-        <Preview>Мы ищем партнёров по всей России для взаимовыгодного сотрудничества без посредников</Preview>
-        <Body style={{...main, minWidth: "430px"}}>
+        <Preview>Мы ищем партнеров по всей России для взаимовыгодного сотрудничества без посредников.</Preview>
+        <Body style={{...main, minWidth: "320px"}}>
             <Section style={{maxWidth: "600px", backgroundColor: colors.black}}>
                 {/* Шапка*/}
                 <Container style={{...container, backgroundColor: "#1A1A1A"}}>
                     <Section style={{borderTop: `26px solid ${colors.black}`, borderBottom: `26px solid ${colors.black}`}}>
-                        <Row style={{textAlign: "right"}}>
-                            <Column>
-                                <Link style={{width: '16px', height: '16px'}} href="https://tk-meister.ru/">
+                        <Row>
+                            <Column style={{textAlign: "left"}}>
+                                <Link style={{marginRight: "50px", display: "inline-block"}} href="https://tk-meister.ru/">
                                     <Img
                                         className="rounded-full"
+                                        style={{maxWidth: "100%", height: "auto"}}
                                         src={`${baseUrl}/email-assets/logo.jpg`}
                                         width="160"
                                         height="55"
@@ -47,19 +43,24 @@ export const MeisterEmail = ({
                                     />
                                 </Link>
                             </Column>
-                            <Column>
+                            <Column style={{textAlign: "right"}}>
                                 {
-                                    headContacts.map((headContact: HeadContactsType, index: number) => {
+                                    headContacts && headContacts.map((headContact: HeadContactsType, index: number) => {
                                         const {href, textStyle, text, img} = headContact;
 
-                                        return <Link key={index} href={href}>
-                                            <Row>
-                                                <Column>
-                                                    <Text style={textStyle}>
-                                                        {text}
-                                                    </Text>
-                                                </Column>
-                                                <Column>
+                                        return <Row style={{marginBottom: `${index === headContacts.length - 1 ? "0" : "6px"}`}} key={index}>
+                                            <Column>
+                                                <Link href={href}
+                                                    style={{
+                                                    ...textStyle,
+                                                    color: `${colors["white"]}`,
+                                                    textDecoration: "none"
+                                                }}>
+                                                    {text}
+                                                </Link>
+                                            </Column>
+                                            <Column>
+                                                <Link href={href}>
                                                     <Img
                                                         className={img["className"]}
                                                         width={img["width"]}
@@ -68,9 +69,9 @@ export const MeisterEmail = ({
                                                         style={img["style"]}
                                                         src={img["src"]}
                                                     />
-                                                </Column>
-                                            </Row>
-                                        </Link>
+                                                </Link>
+                                            </Column>
+                                        </Row>
                                     })
                                 }
                             </Column>
@@ -95,8 +96,8 @@ export const MeisterEmail = ({
                 <Container style={{...container, backgroundColor: "#1A1A1A"}}>
                     <Section
                         style={{
-                            borderTop: "71px solid transparent",
-                            borderBottom: "67px solid transparent",
+                            marginTop: "71px",
+                            marginBottom: "67px",
                         }}
                     >
                         <Row>
@@ -105,10 +106,10 @@ export const MeisterEmail = ({
                                     marginTop: 0,
                                     marginBottom: "10px",
                                 }}>
-                                    {offers["h1"]}
+                                    {offers["h1"] && offers["h1"]}
                                 </Heading>
                                 {
-                                    offers["text"].map((offerText: string, index: number) => {
+                                    offers["text"] && offers["text"].map((offerText: string, index: number) => {
                                         return <Text key={index} style={{color: "white", fontSize: "16px", lineHeight: 1.6}}>
                                             {offerText}
                                         </Text>
@@ -123,16 +124,16 @@ export const MeisterEmail = ({
                     <Section style={{
                         borderTop: "solid transparent",
                         borderBottom: "solid transparent",
-                        borderTopWidth: "65px",
-                        borderBottomWidth: "65px",
+                        marginTop: "65px",
+                        marginBottom: "65px",
                     }}>
-                        <Row style={{marginBottom: "40px"}}>
+                        <Row>
                             <Heading as="h2" style={{...h1,
                                 color: "black",
                                 marginTop: 0,
-                                marginBottom: "19px",
+                                marginBottom: "43px",
                             }}>
-                                {partners["h2"]}
+                                {partners["h2"] && partners["h2"]}
                             </Heading>
                         </Row>
 
@@ -141,10 +142,10 @@ export const MeisterEmail = ({
                                 if (index % 2 === 0) acc.push([curr]);
                                 else acc[acc.length - 1].push(curr);
                                 return acc;
-                            }, []).map((pairPartners: [PartnersDataType], i: number) => {
+                            }, [])?.map((pairPartners: [PartnersDataType], i: number) => {
                                 return <Row key={i} style={{marginBottom: `${i < Math.round((partners["data"].length) / 2) - 1 ? "40px" : "0"}`}}>
                                     {
-                                        pairPartners.map((partner, k) => {
+                                        pairPartners && pairPartners.map((partner, k) => {
                                             const {img, href} = partner
 
                                             return <Column key={k} style={{width: "50%", textAlign: "center"}}>
@@ -162,7 +163,9 @@ export const MeisterEmail = ({
                                                             src={img["src"]}
                                                             style={{
                                                                 width: img["style"]["width"],
-                                                                height: img["style"]["height"],
+                                                                height: "auto",
+                                                                maxWidth: "100%",
+
                                                                 display: "inline",
                                                             }}
                                                             alt={img["alt"]}
@@ -194,8 +197,8 @@ export const MeisterEmail = ({
                 }}>
                     <Section
                         style={{
-                            marginTop: "67px",
-                            marginBottom: "67px",
+                            marginTop: "70px",
+                            marginBottom: "70px",
                         }}>
                         <Row>
                             <Column>
@@ -204,17 +207,17 @@ export const MeisterEmail = ({
                                     marginTop: 0,
                                     marginBottom: "32px",
                                 }}>
-                                    {reviews["h2"]}
+                                    {reviews["h2"] && reviews["h2"]}
                                 </Heading>
                             </Column>
                         </Row>
                         {
-                            reviews["data"].map((review, index: number) => {
-                                return <Row style={{
+                            reviews["data"] && reviews["data"].map((review, index: number) => {
+                                return <Row key={index} style={{
                                     backgroundColor: "#4B4B4B",
                                     borderRadius: "15px",
                                     border: "25px solid transparent",
-                                    marginBottom: `${index === reviews["data"].length - 1 ? "75px" : "20px"}`
+                                    marginBottom: `${index === reviews["data"].length - 1 ? "70px" : "20px"}`
                                 }}>
                                     <Column style={{
                                         verticalAlign: "baseline"
@@ -264,10 +267,11 @@ export const MeisterEmail = ({
                     backgroundColor: colors.gray,
                     borderStyle: "solid",
                     borderColor: "transparent",
-                    paddingTop: "50px",
-                    paddingBottom: "70px",
                 }}>
-                    <Section>
+                    <Section style={{
+                        marginTop: "50px",
+                        marginBottom: "70px",
+                    }}>
                         <Row style={{marginBottom: "15px"}}>
                             <Column style={{textAlign: "center"}}>
                                 <Link href={baseUrl}>
@@ -365,13 +369,5 @@ export const MeisterEmail = ({
         </Body>
     </Html>
 );
-
-MeisterEmail.PreviewProps = {
-    loginCode: 'Meister',
-    offers: offers,
-    headContacts: headContacts,
-    partners: partners,
-    reviews: reviews,
-} as MeisterEmailProps;
 
 export default MeisterEmail;
