@@ -10,8 +10,8 @@ import {
     Text,
 } from '@react-email/components';
 import * as React from 'react';
-import {HeadContactsType, MeisterEmailProps, OffersType} from "../helpers/types";
-import {headContacts, offers} from "../helpers/data";
+import {HeadContactsType, MeisterEmailProps, OffersType, PartnersDataType, PartnersType} from "../helpers/types";
+import {headContacts, offers, partners, reviews} from "../helpers/data";
 import {colors, container, h1, intendClear, link, main, phoneStyle} from "../helpers/styles";
 
 const baseUrl = process.env.VERCEL_URL
@@ -19,9 +19,11 @@ const baseUrl = process.env.VERCEL_URL
     : `https://tk-meister.ru`;
 
 export const MeisterEmail = ({
-            loginCode: string,
-            offers: OffersType,
-            headContacts: [HeadContactsType],
+            loginCode,
+            offers,
+            headContacts,
+            partners,
+            reviews
      }: MeisterEmailProps) => (
     <Html>
         <Head>
@@ -48,21 +50,23 @@ export const MeisterEmail = ({
                             <Column>
                                 {
                                     headContacts.map((headContact: HeadContactsType, index: number) => {
-                                        return <Link key={index} href={headContact["href"]}>
+                                        const {href, textStyle, text, img} = headContact;
+
+                                        return <Link key={index} href={href}>
                                             <Row>
                                                 <Column>
-                                                    <Text style={headContact["textStyle"]}>
-                                                        {headContact["text"]}
+                                                    <Text style={textStyle}>
+                                                        {text}
                                                     </Text>
                                                 </Column>
                                                 <Column>
                                                     <Img
-                                                        className={headContact["img"]["className"]}
-                                                        width={headContact["img"]["width"]}
-                                                        height={headContact["img"]["height"]}
-                                                        alt={headContact["img"]["alt"]}
-                                                        style={headContact["img"]["style"]}
-                                                        src={headContact["img"]["src"]}
+                                                        className={img["className"]}
+                                                        width={img["width"]}
+                                                        height={img["height"]}
+                                                        alt={img["alt"]}
+                                                        style={img["style"]}
+                                                        src={img["src"]}
                                                     />
                                                 </Column>
                                             </Row>
@@ -128,150 +132,59 @@ export const MeisterEmail = ({
                                 marginTop: 0,
                                 marginBottom: "19px",
                             }}>
-                                С нами сотрудничают
+                                {partners["h2"]}
                             </Heading>
                         </Row>
-                        <Row style={{marginBottom: "40px"}}>
-                            <Column style={{
-                                width: "50%",
-                            }}>
-                                <Link
-                                    href="https://seyma.ru/"
-                                    target="_blank"
-                                    style={{
-                                        textAlign: "center",
-                                        display: "inline-block",
-                                        width: "100%",
-                                    }}
-                                >
-                                    <Img
-                                        src={`${baseUrl}/email-assets/partners/seyma.jpg`}
-                                        style={{
-                                            width: "123px",
-                                            height: "98px",
-                                            display: "inline",
-                                        }}
-                                        alt="Логотип: Агрофирма Птицефабрика Сеймовская"
-                                    />
-                                </Link>
-                            </Column>
-                            <Column style={{
-                                textAlign: "center",
-                                width: "50%",
-                            }}>
 
+                        {
+                            (partners["data"] as PartnersDataType[]).reduce((acc, curr, index) => {
+                                if (index % 2 === 0) acc.push([curr]);
+                                else acc[acc.length - 1].push(curr);
+                                return acc;
+                            }, []).map((pairPartners: [PartnersDataType], i: number) => {
+                                return <Row key={i} style={{marginBottom: `${i < Math.round((partners["data"].length) / 2) - 1 ? "40px" : "0"}`}}>
+                                    {
+                                        pairPartners.map((partner, k) => {
+                                            const {img, href} = partner
 
-                                <Link
-                                    href="https://synergetic.ru/"
-                                    target="_blank"
-                                    style={{
-                                        textAlign: "center",
-                                        display: "inline-block",
-                                        width: "100%",
-                                    }}
-                                >
-                                    <Img
-                                        src={`${baseUrl}/email-assets/partners/synergetic.jpg`}
-                                        style={{
-                                            width: "210px",
-                                            height: "70px",
-                                            display: "inline",
-                                        }}
-                                        alt="ООО 'Синергетик'"
-                                    />
-                                </Link>
-                            </Column>
-                        </Row>
-                        <Row style={{marginBottom: "40px"}}>
-                            <Column style={{
-                                textAlign: "center",
-                                width: "50%",
-                            }}>
-                                <Link
-                                    href="http://www.krst-nn.ru/"
-                                    target="_blank"
-                                    style={{
-                                        textAlign: "center",
-                                        display: "inline-block",
-                                        width: "100%",
-                                    }}
-                                >
-                                    <Img
-                                        src={`${baseUrl}/email-assets/partners/crystal.jpg`}
-                                        style={{
-                                            width: "170px",
-                                            height: "64px",
-                                            display: "inline",
-                                        }}
-                                        alt="Торговый дом Кристалл"
-                                    />
-                                </Link>
-                            </Column>
-                            <Column style={{
-                                textAlign: "center",
-                                width: "50%",
-                            }}>
-                                <Link
-                                    href="http://www.biskotti.ru/products"
-                                    target="_blank"
-                                    style={{
-                                        textAlign: "center",
-                                        display: "inline-block",
-                                        width: "100%",
-                                    }}
-                                >
-                                    <Img
-                                        src={`${baseUrl}/email-assets/partners/biskotti.jpg`}
-                                        style={{
-                                            width: "151px",
-                                            height: "114px",
-                                            display: "inline",
-                                        }}
-                                        alt="ООО 'БИСКОТТИ ПЛЮС'"
-                                    />
-                                </Link>
-                            </Column>
-                        </Row>
-                        <Row>
-                            <Column style={{
-                                textAlign: "center",
-                                width: "50%",
-                            }}>
-                                <Link
-                                    href="https://gormanu.ru/"
-                                    target="_blank"
-                                    style={{
-                                        textAlign: "center",
-                                        display: "inline-block",
-                                        width: "100%",
-                                    }}
-                                >
-                                    <Img
-                                        src={`${baseUrl}/email-assets/partners/manufactura.jpg`}
-                                        style={{
-                                            width: "142px",
-                                            height: "97px",
-                                            display: "inline",
-                                        }}
-                                        alt="Логотип: Гороховецкая мануфактура"
-                                    />
-                                </Link>
-                            </Column>
-                            <Column style={{
-                                textAlign: "center",
-                                width: "50%",
-                            }}>
-                                <Img
-                                    src={`${baseUrl}/email-assets/partners/volgasnab.jpg`}
-                                    style={{
-                                        width: "148px",
-                                        height: "65px",
-                                        display: "inline",
-                                    }}
-                                    alt="Торговый дом Волгаснаб"
-                                />
-                            </Column>
-                        </Row>
+                                            return <Column key={k} style={{width: "50%", textAlign: "center"}}>
+                                                {href ?
+                                                    <Link
+                                                        href={href}
+                                                        target="_blank"
+                                                        style={{
+                                                            textAlign: "center",
+                                                            display: "inline-block",
+                                                            width: "100%",
+                                                        }}
+                                                    >
+                                                        <Img
+                                                            src={img["src"]}
+                                                            style={{
+                                                                width: img["style"]["width"],
+                                                                height: img["style"]["height"],
+                                                                display: "inline",
+                                                            }}
+                                                            alt={img["alt"]}
+                                                        />
+                                                    </Link>
+                                                    :
+                                                    <Img
+                                                        src={img["src"]}
+                                                        style={{
+                                                            width: img["style"]["width"],
+                                                            height: img["style"]["height"],
+                                                            display: "inline",
+                                                        }}
+                                                        alt={img["alt"]}
+                                                    />
+                                                }
+                                            </Column>
+                                        })
+                                    }
+                                </Row>
+                            })
+                        }
                     </Section>
                 </Container>
                 {/* Отзывы */}
@@ -283,7 +196,6 @@ export const MeisterEmail = ({
                         style={{
                             marginTop: "67px",
                             marginBottom: "67px",
-
                         }}>
                         <Row>
                             <Column>
@@ -292,84 +204,36 @@ export const MeisterEmail = ({
                                     marginTop: 0,
                                     marginBottom: "32px",
                                 }}>
-                                    Более 300 РЕАЛЬНЫХ отзывов!
+                                    {reviews["h2"]}
                                 </Heading>
                             </Column>
                         </Row>
-                        <Row style={{
-                            backgroundColor: "#4B4B4B",
-                            borderRadius: "15px",
-                            border: "25px solid transparent",
-                            marginBottom: "20px"
-                        }}>
-                            <Column style={{
-                                verticalAlign: "baseline"
-                            }}>
-                                <Img src={`${baseUrl}/email-assets/quote.jpg`}
-                                     width="20px"
-                                     height="15px"
-                                     style={{marginRight: "25px"}}
-                                     alt="Картинка кавычек для обозначения цитаты"
-                                />
-                            </Column>
-                            <Column>
-                                <Text style={{display: 'inline', color: colors.lightGray, fontSize: "16px"}}>
-                                    Отличный перевозчик, профессионал своего дела.
-                                    БЫСТРЫЙ, четкий контроль погрузочно-разгрузочных работ.
-                                    Информативность и добросовестность.
-                                    Успеха вам и процветания! Рекомендую!
-                                </Text>
-                            </Column>
-                        </Row>
-                        <Row style={{
-                            backgroundColor: "#4B4B4B",
-                            borderRadius: "15px",
-                            border: "25px solid transparent",
-                            marginBottom: "20px"
-                        }}>
-                            <Column style={{
-                                verticalAlign: "baseline"
-                            }}>
-                                <Img src={`${baseUrl}/email-assets/quote.jpg`}
-                                     width="20px"
-                                     height="15px"
-                                     style={{marginRight: "25px"}}
-                                     alt='Картинка кавычек для обозначения цитаты'
-                                />
-                            </Column>
-                            <Column>
-                                <Text style={{display: 'inline', color: colors.lightGray, fontSize: "16px"}}>
-                                    Замечательный, ответственный перевозчик! Оперативность,
-                                    качество, приятное общение, порядочность — всё это вызывает уважение!
-                                    Спасибо за профессиональный подход к делу. Желаем процветания и успехов!
-                                </Text>
-                            </Column>
-                        </Row>
-                        <Row style={{
-                            backgroundColor: "#4B4B4B",
-                            borderRadius: "15px",
-                            border: "25px solid transparent",
-                            marginBottom: "70px",
-                        }}>
-                            <Column style={{
-                                verticalAlign: "baseline"
-                            }}>
-                                <Img src={`${baseUrl}/email-assets/quote.jpg`}
-                                     width="20px"
-                                     height="15px"
-                                     style={{marginRight: "25px"}}
-                                     alt='Картинка кавычек для обозначения цитаты'
-                                />
-                            </Column>
-                            <Column>
-                                <Text style={{display: 'inline', color: colors.lightGray, fontSize: "16px"}}>
-                                    Замечательный, ответственный перевозчик!.
-                                    Оперативность, качество, приятное общение, порядочность — всё это вызывает уважение!
-                                    Спасибо за профессиональный подход к делу.
-                                    Желаем процветания и успехов!
-                                </Text>
-                            </Column>
-                        </Row>
+                        {
+                            reviews["data"].map((review, index: number) => {
+                                return <Row style={{
+                                    backgroundColor: "#4B4B4B",
+                                    borderRadius: "15px",
+                                    border: "25px solid transparent",
+                                    marginBottom: `${index === reviews["data"].length - 1 ? "75px" : "20px"}`
+                                }}>
+                                    <Column style={{
+                                        verticalAlign: "baseline"
+                                    }}>
+                                        <Img src={`${baseUrl}/email-assets/quote.jpg`}
+                                             width="20px"
+                                             height="15px"
+                                             style={{marginRight: "25px"}}
+                                             alt="Картинка кавычек для обозначения цитаты"
+                                        />
+                                    </Column>
+                                    <Column>
+                                        <Text style={{display: 'inline', color: colors.lightGray, fontSize: "16px"}}>
+                                            {review}
+                                        </Text>
+                                    </Column>
+                                </Row>
+                            })
+                        }
                         <Row>
                             <Column style={{textAlign: "center"}}>
                                 <Link href="https://tk-meister.ru/"
@@ -505,7 +369,9 @@ export const MeisterEmail = ({
 MeisterEmail.PreviewProps = {
     loginCode: 'Meister',
     offers: offers,
-    headContacts: headContacts
+    headContacts: headContacts,
+    partners: partners,
+    reviews: reviews,
 } as MeisterEmailProps;
 
 export default MeisterEmail;
